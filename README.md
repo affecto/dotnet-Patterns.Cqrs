@@ -1,15 +1,15 @@
-# Mapping
+# Patterns.Cqrs
 * **Affecto.Patterns.Cqrs**
-  * Interfaces and extension methods for one-way and two-way mappers.
+  * Interfaces and base implementation for the Command Query Responsibility Segregation (CQRS) pattern.
   * NuGet: https://www.nuget.org/packages/Affecto.Patterns.Cqrs
 * **Affecto.Patterns.Cqrs.Autofac**
-  * AutoMapper implementation for one-way and two-way mapper interfaces defined in Affecto.Mapping NuGet.
+  * Autofac implementation for the command handler resolver defined in Affecto.Patterns.Cqrs NuGet.
   * NuGet: https://www.nuget.org/packages/Affecto.Patterns.Cqrs.Autofac
 
 ## Build status
 
 | Target | Build |
 | -----------------------|------------------|
-| Project | [![Build status](https://ci.appveyor.com/api/projects/status/83d7pyid8vtv0tf9?svg=true)](https://ci.appveyor.com/project/johannesvaltonen/dotnet-patterns-domain) |
-| Master branch | [![Build status](https://ci.appveyor.com/api/projects/status/83d7pyid8vtv0tf9/branch/master?svg=true)](https://ci.appveyor.com/project/johannesvaltonen/dotnet-patterns-domain/branch/master) |
-| Dev branch | [![Build status](https://ci.appveyor.com/api/projects/status/83d7pyid8vtv0tf9/branch/dev?svg=true)](https://ci.appveyor.com/project/johannesvaltonen/dotnet-patterns-domain/branch/dev) |
+| Project | [![Build status](https://ci.appveyor.com/api/projects/status/62shi9ba6v53ln7n?svg=true)](https://ci.appveyor.com/project/johannesvaltonen/dotnet-patterns-cqrs) |
+| Master branch | [![Build status](https://ci.appveyor.com/api/projects/status/62shi9ba6v53ln7n/branch/master?svg=true)](https://ci.appveyor.com/project/johannesvaltonen/dotnet-patterns-cqrs/branch/master) |
+| Dev branch | [![Build status](https://ci.appveyor.com/api/projects/status/62shi9ba6v53ln7n/branch/dev?svg=true)](https://ci.appveyor.com/project/johannesvaltonen/dotnet-patterns-cqrs/branch/dev) |
