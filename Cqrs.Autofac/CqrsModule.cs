@@ -14,6 +14,7 @@ namespace Affecto.Patterns.Cqrs.Autofac
 
             builder.RegisterType<ContainerCommandHandlerResolver>().As<ICommandHandlerResolver>();
             builder.RegisterType<CommandBus>().As<ICommandBus>();
+            builder.RegisterType<AsyncCommandBus>().As<IAsyncCommandBus>();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Affecto.Patterns.Cqrs.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void NoCommandHandlersRegisteredThrowsException()
         {
-            sut.Resolve(command);
+            sut.ResolveCommandHandler(command);
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace Affecto.Patterns.Cqrs.Tests
         {
             commandHandlers.Add(Substitute.For<ICommandHandler<TestCommand>>());
             commandHandlers.Add(Substitute.For<ICommandHandler<TestCommand>>());
-            sut.Resolve(command);
+            sut.ResolveCommandHandler(command);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace Affecto.Patterns.Cqrs.Tests
             ICommandHandler<TestCommand> commandHandler = Substitute.For<ICommandHandler<TestCommand>>();
             commandHandlers.Add(commandHandler);
 
-            ICommandHandler<TestCommand> result = sut.Resolve(command);
+            ICommandHandler<TestCommand> result = sut.ResolveCommandHandler(command);
 
             Assert.AreSame(commandHandler, result);
         }

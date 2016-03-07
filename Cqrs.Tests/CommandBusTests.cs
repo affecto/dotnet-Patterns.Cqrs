@@ -20,7 +20,7 @@ namespace Affecto.Patterns.Cqrs.Tests
             commandHandler = Substitute.For<ICommandHandler<TestCommand>>();
             
             commandHandlerResolver = Substitute.For<ICommandHandlerResolver>();
-            commandHandlerResolver.Resolve(command).Returns(commandHandler);
+            commandHandlerResolver.ResolveCommandHandler(command).Returns(commandHandler);
 
             sut = new CommandBus(commandHandlerResolver);
         }
