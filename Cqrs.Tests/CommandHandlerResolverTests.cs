@@ -11,14 +11,12 @@ namespace Affecto.Patterns.Cqrs.Tests
     [TestClass]
     public class CommandHandlerResolverTests
     {
-        private TestCommand command;
         private List<ICommandHandler> commandHandlers;
         private CommandHandlerResolver sut;
 
         [TestInitialize]
         public void Setup()
         {
-            command = new TestCommand();
             commandHandlers = new List<ICommandHandler>();
 
             sut = new CommandHandlerResolver(commandHandlers);
@@ -35,7 +33,7 @@ namespace Affecto.Patterns.Cqrs.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void NoCommandHandlersRegisteredThrowsException()
         {
-            sut.ResolveCommandHandler(command);
+            sut.ResolveCommandHandler<ICommandHandler<TestCommand>>();
         }
 
         [TestMethod]
@@ -44,7 +42,7 @@ namespace Affecto.Patterns.Cqrs.Tests
         {
             commandHandlers.Add(Substitute.For<ICommandHandler<TestCommand>>());
             commandHandlers.Add(Substitute.For<ICommandHandler<TestCommand>>());
-            sut.ResolveCommandHandler(command);
+            sut.ResolveCommandHandler<ICommandHandler<TestCommand>>();
         }
 
         [TestMethod]
@@ -53,7 +51,7 @@ namespace Affecto.Patterns.Cqrs.Tests
             ICommandHandler<TestCommand> commandHandler = Substitute.For<ICommandHandler<TestCommand>>();
             commandHandlers.Add(commandHandler);
 
-            ICommandHandler<TestCommand> result = sut.ResolveCommandHandler(command);
+            ICommandHandler<TestCommand> result = sut.ResolveCommandHandler<ICommandHandler<TestCommand>>();
 
             Assert.AreSame(commandHandler, result);
         }

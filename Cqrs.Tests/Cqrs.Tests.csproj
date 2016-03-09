@@ -64,6 +64,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AsyncCommandBusTests.cs" />
     <Compile Include="EnvelopeTests.cs" />
     <Compile Include="CommandHandlerResolverTests.cs" />
     <Compile Include="CommandBusTests.cs" />

@@ -8,23 +8,23 @@ using NSubstitute;
 namespace Affecto.Patterns.Cqrs.Tests
 {
     [TestClass]
-    public class CommandBusTests
+    public class AsyncCommandBusTests
     {
         private TestCommand command;
-        private ICommandHandler<TestCommand> commandHandler;
+        private IAsyncCommandHandler<TestCommand> commandHandler;
         private ICommandHandlerResolver commandHandlerResolver;
-        private CommandBus sut;
+        private AsyncCommandBus sut;
 
         [TestInitialize]
         public void Setup()
         {
             command = new TestCommand();
-            commandHandler = Substitute.For<ICommandHandler<TestCommand>>();
+            commandHandler = Substitute.For<IAsyncCommandHandler<TestCommand>>();
             
             commandHandlerResolver = Substitute.For<ICommandHandlerResolver>();
-            commandHandlerResolver.ResolveCommandHandler<ICommandHandler<TestCommand>>().Returns(commandHandler);
+            commandHandlerResolver.ResolveCommandHandler<IAsyncCommandHandler<TestCommand>>().Returns(commandHandler);
 
-            sut = new CommandBus(commandHandlerResolver);
+            sut = new AsyncCommandBus(commandHandlerResolver);
         }
 
         [TestMethod]
@@ -35,17 +35,24 @@ namespace Affecto.Patterns.Cqrs.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void EnvelopeCannotBeNull()
         {
-            sut.Send(null);
+            try
+            {
+                sut.SendAsync(null).Wait();
+                Assert.Fail();
+            }
+            catch (AggregateException e)
+            {
+                Assert.IsInstanceOfType(e.InnerException, typeof(ArgumentNullException));
+            }
         }
 
         [TestMethod]
         public void CommandIsHandled()
         {
-            sut.Send(Envelope.Create(command));
-            commandHandler.Received().Execute(command);
+            sut.SendAsync(Envelope.Create(command)).Wait();
+            commandHandler.Received().ExecuteAsync(command);
         }
     }
 }

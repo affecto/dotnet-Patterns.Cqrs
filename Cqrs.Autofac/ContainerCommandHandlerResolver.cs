@@ -26,14 +26,9 @@ namespace Affecto.Patterns.Cqrs.Autofac
             this.componentContext = componentContext;
         }
 
-        protected override ICollection<ICommandHandler<TCommand>> ResolveCommandHandlers<TCommand>()
+        protected override ICollection<TCommandHandler> ResolveCommandHandlers<TCommandHandler>()
         {
-            return componentContext.Resolve<IEnumerable<ICommandHandler<TCommand>>>().ToList();
-        }
-
-        protected override ICollection<IAsyncCommandHandler<TCommand>> ResolveAsyncCommandHandlers<TCommand>()
-        {
-            return componentContext.Resolve<IEnumerable<IAsyncCommandHandler<TCommand>>>().ToList();
+            return componentContext.Resolve<IEnumerable<TCommandHandler>>().ToList();
         }
     }
 }

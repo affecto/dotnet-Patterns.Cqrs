@@ -40,7 +40,7 @@ namespace Affecto.Patterns.Cqrs
 
         private async Task ExecuteAsync<TCommand>(TCommand commandBody) where TCommand : class, ICommand
         {
-            IAsyncCommandHandler<TCommand> handler = commandHandlerResolver.ResolveAsyncCommandHandler(commandBody);
+            IAsyncCommandHandler<TCommand> handler = commandHandlerResolver.ResolveCommandHandler<IAsyncCommandHandler<TCommand>>();
             await handler.ExecuteAsync(commandBody);
         }
     }

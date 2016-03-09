@@ -25,14 +25,9 @@ namespace Affecto.Patterns.Cqrs
             this.commandHandlers = commandHandlers;
         }
 
-        protected override ICollection<ICommandHandler<TCommand>> ResolveCommandHandlers<TCommand>()
+        protected override ICollection<TCommandHandler> ResolveCommandHandlers<TCommandHandler>()
         {
-            return commandHandlers.OfType<ICommandHandler<TCommand>>().ToList();
-        }
-
-        protected override ICollection<IAsyncCommandHandler<TCommand>> ResolveAsyncCommandHandlers<TCommand>()
-        {
-            return commandHandlers.OfType<IAsyncCommandHandler<TCommand>>().ToList();
+            return commandHandlers.OfType<TCommandHandler>().ToList();
         }
     }
 }

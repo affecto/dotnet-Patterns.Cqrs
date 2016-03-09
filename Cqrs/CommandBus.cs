@@ -39,7 +39,7 @@ namespace Affecto.Patterns.Cqrs
 
         private void Execute<TCommand>(TCommand commandBody) where TCommand : class, ICommand
         {
-            ICommandHandler<TCommand> handler = commandHandlerResolver.ResolveCommandHandler(commandBody);
+            ICommandHandler<TCommand> handler = commandHandlerResolver.ResolveCommandHandler<ICommandHandler<TCommand>>();
             handler.Execute(commandBody);
         }
     }
