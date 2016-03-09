@@ -7,6 +7,6 @@
     <description>$description$</description>
     <projectUrl>https://github.com/affecto/dotnet-Patterns.Cqrs</projectUrl>
     <tags>affecto pattern patterns cqrs command query responsibility segregation cqs separation</tags>
-    <releaseNotes>Moved to GitHub.</releaseNotes>
+    <releaseNotes>Added asynchronous versions of the command bus and command handler. Raised to .NET 4.5.2.</releaseNotes>
   </metadata>
 </package>

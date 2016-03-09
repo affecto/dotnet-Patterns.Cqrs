@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Affecto.Patterns.Cqrs
 {
     /// <summary>
-    /// Provides a bus for receiving commands. Implements a mechanism for routing commands to command handlers.
+    /// Provides an asynchronous bus for receiving commands. Implements a mechanism for routing commands to command handlers.
     /// </summary>
-    public class CommandBus : ICommandBus
+    public class AsyncCommandBus : IAsyncCommandBus
     {
         private readonly ICommandHandlerResolver commandHandlerResolver;
 
@@ -13,7 +14,7 @@ namespace Affecto.Patterns.Cqrs
         /// Initializes a new instance of the <see cref="CommandBus"/> class.
         /// </summary>
         /// <param name="commandHandlerResolver">Resolver object for finding command handlers.</param>
-        public CommandBus(ICommandHandlerResolver commandHandlerResolver)
+        public AsyncCommandBus(ICommandHandlerResolver commandHandlerResolver)
         {
             if (commandHandlerResolver == null)
             {
@@ -27,20 +28,20 @@ namespace Affecto.Patterns.Cqrs
         /// Sends command to the bus for execution.
         /// </summary>
         /// <param name="command">Command wrapped in an envelope.</param>
-        public virtual void Send(Envelope<ICommand> command)
+        public virtual async Task SendAsync(Envelope<ICommand> command)
         {
             if (command == null)
             {
                 throw new ArgumentNullException("command");
             }
 
-            Execute((dynamic) command.Body);
+            await ExecuteAsync((dynamic) command.Body);
         }
 
-        private void Execute<TCommand>(TCommand commandBody) where TCommand : class, ICommand
+        private async Task ExecuteAsync<TCommand>(TCommand commandBody) where TCommand : class, ICommand
         {
-            ICommandHandler<TCommand> handler = commandHandlerResolver.ResolveCommandHandler<ICommandHandler<TCommand>>();
-            handler.Execute(commandBody);
+            IAsyncCommandHandler<TCommand> handler = commandHandlerResolver.ResolveCommandHandler<IAsyncCommandHandler<TCommand>>();
+            await handler.ExecuteAsync(commandBody);
         }
     }
 }

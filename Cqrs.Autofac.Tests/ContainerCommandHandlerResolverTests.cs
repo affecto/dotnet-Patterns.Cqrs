@@ -20,7 +20,7 @@ namespace Affecto.Patterns.Cqrs.Autofac.Tests
             container = builder.Build();
 
             sut = new ContainerCommandHandlerResolver(container);
-            ICommandHandler<TestCommand> commandHandler = sut.Resolve(new TestCommand());
+            ICommandHandler<TestCommand> commandHandler = sut.ResolveCommandHandler<ICommandHandler<TestCommand>>();
 
             Assert.IsInstanceOfType(commandHandler, typeof(TestCommandHandler));
         }
@@ -34,7 +34,7 @@ namespace Affecto.Patterns.Cqrs.Autofac.Tests
             container = builder.Build();
 
             sut = new ContainerCommandHandlerResolver(container);
-            sut.Resolve(new TestCommand());
+            sut.ResolveCommandHandler<ICommandHandler<TestCommand>>();
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace Affecto.Patterns.Cqrs.Autofac.Tests
             container = builder.Build();
 
             sut = new ContainerCommandHandlerResolver(container);
-            sut.Resolve(new TestCommand());
+            sut.ResolveCommandHandler<ICommandHandler<TestCommand>>();
         }
     }
 }
