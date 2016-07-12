@@ -43,7 +43,7 @@ namespace Affecto.Patterns.Cqrs.Tests
         [TestMethod]
         public void BodyIsSetFromFactory()
         {
-            Envelope<ICommand> sut = Envelope.Create(command);
+            Envelope<TestCommand> sut = Envelope.Create(command);
 
             Assert.AreSame(command, sut.Body);
         }
@@ -59,7 +59,7 @@ namespace Affecto.Patterns.Cqrs.Tests
         [TestMethod]
         public void CorrelationIdIsSetFromFactory()
         {
-            Envelope<ICommand> sut = Envelope.Create(command, CorrelationId);
+            Envelope<TestCommand> sut = Envelope.Create(command, CorrelationId);
 
             Assert.AreSame(CorrelationId, sut.CorrelationId);
         }

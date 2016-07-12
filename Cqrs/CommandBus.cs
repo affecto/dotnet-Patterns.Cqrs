@@ -27,7 +27,8 @@ namespace Affecto.Patterns.Cqrs
         /// Sends command to the bus for execution.
         /// </summary>
         /// <param name="command">Command wrapped in an envelope.</param>
-        public virtual void Send(Envelope<ICommand> command)
+        /// /// <typeparam name="TCommand">Command type.</typeparam>
+        public virtual void Send<TCommand>(Envelope<TCommand> command) where TCommand : class
         {
             if (command == null)
             {
@@ -37,7 +38,7 @@ namespace Affecto.Patterns.Cqrs
             Execute((dynamic) command.Body);
         }
 
-        private void Execute<TCommand>(TCommand commandBody) where TCommand : class, ICommand
+        private void Execute<TCommand>(TCommand commandBody) where TCommand : class
         {
             ICommandHandler<TCommand> handler = commandHandlerResolver.ResolveCommandHandler<ICommandHandler<TCommand>>();
             handler.Execute(commandBody);

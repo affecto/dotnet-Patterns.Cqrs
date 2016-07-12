@@ -11,6 +11,7 @@ namespace Affecto.Patterns.Cqrs
         /// Sends command to the bus for execution.
         /// </summary>
         /// <param name="command">Command wrapped in an envelope.</param>
-        Task SendAsync(Envelope<ICommand> command);
+        /// <typeparam name="TCommand">Command type.</typeparam>
+        Task SendAsync<TCommand>(Envelope<TCommand> command) where TCommand : class;
     }
 }

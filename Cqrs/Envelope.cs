@@ -12,16 +12,18 @@ namespace Affecto.Patterns.Cqrs
         /// </summary>
         /// <param name="body">Command body.</param>
         /// <param name="correlationId">Correlation id for tracking the command execution.</param>
-        public static Envelope<ICommand> Create<TCommand>(TCommand body, string correlationId = null) where TCommand : class, ICommand
+        /// <typeparam name="TCommand">Command type.</typeparam>
+        public static Envelope<TCommand> Create<TCommand>(TCommand body, string correlationId = null) where TCommand : class
         {
-            return new Envelope<ICommand>(body, correlationId);
+            return new Envelope<TCommand>(body, correlationId);
         }
     }
 
     /// <summary>
     /// Provides the envelope for a command that will be sent to a bus.
     /// </summary>
-    public class Envelope<TCommand> : Envelope where TCommand : class, ICommand
+    /// <typeparam name="TCommand">Command type.</typeparam>
+    public class Envelope<TCommand> : Envelope where TCommand : class
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Envelope{T}"/> class.
