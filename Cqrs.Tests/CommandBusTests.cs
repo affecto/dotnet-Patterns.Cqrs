@@ -38,7 +38,7 @@ namespace Affecto.Patterns.Cqrs.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void EnvelopeCannotBeNull()
         {
-            sut.Send(null);
+            sut.Send<TestCommand>(null);
         }
 
         [TestMethod]

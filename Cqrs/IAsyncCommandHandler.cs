@@ -6,7 +6,7 @@ namespace Affecto.Patterns.Cqrs
     /// Handler for asynchronously executing commands that were sent to a bus.
     /// </summary>
     /// <typeparam name="TCommand">Command type.</typeparam>
-    public interface IAsyncCommandHandler<in TCommand> : ICommandHandler where TCommand : class, ICommand
+    public interface IAsyncCommandHandler<in TCommand> : ICommandHandler where TCommand : class
     {
         /// <summary>
         /// Asynchronously executes a command that was sent to a bus.

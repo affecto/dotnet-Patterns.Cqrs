@@ -6,10 +6,6 @@
   * Autofac implementation for the command handler resolver defined in Affecto.Patterns.Cqrs NuGet.
   * NuGet: https://www.nuget.org/packages/Affecto.Patterns.Cqrs.Autofac
 
-## Build status
+### Build status
 
-| Target | Build |
-| -----------------------|------------------|
-| Project | [![Build status](https://ci.appveyor.com/api/projects/status/62shi9ba6v53ln7n?svg=true)](https://ci.appveyor.com/project/affecto/dotnet-patterns-cqrs) |
-| Master branch | [![Build status](https://ci.appveyor.com/api/projects/status/62shi9ba6v53ln7n/branch/master?svg=true)](https://ci.appveyor.com/project/affecto/dotnet-patterns-cqrs/branch/master) |
-| Development branch | [![Build status](https://ci.appveyor.com/api/projects/status/62shi9ba6v53ln7n/branch/development?svg=true)](https://ci.appveyor.com/project/affecto/dotnet-patterns-cqrs/branch/development) |
+[![Build status](https://ci.appveyor.com/api/projects/status/62shi9ba6v53ln7n?svg=true)](https://ci.appveyor.com/project/affecto/dotnet-patterns-cqrs)

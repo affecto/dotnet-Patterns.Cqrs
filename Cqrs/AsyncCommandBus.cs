@@ -28,7 +28,8 @@ namespace Affecto.Patterns.Cqrs
         /// Sends command to the bus for execution.
         /// </summary>
         /// <param name="command">Command wrapped in an envelope.</param>
-        public virtual async Task SendAsync(Envelope<ICommand> command)
+        /// <typeparam name="TCommand">Command type.</typeparam>
+        public virtual async Task SendAsync<TCommand>(Envelope<TCommand> command) where TCommand : class
         {
             if (command == null)
             {
@@ -38,7 +39,7 @@ namespace Affecto.Patterns.Cqrs
             await ExecuteAsync((dynamic) command.Body);
         }
 
-        private async Task ExecuteAsync<TCommand>(TCommand commandBody) where TCommand : class, ICommand
+        private async Task ExecuteAsync<TCommand>(TCommand commandBody) where TCommand : class
         {
             IAsyncCommandHandler<TCommand> handler = commandHandlerResolver.ResolveCommandHandler<IAsyncCommandHandler<TCommand>>();
             await handler.ExecuteAsync(commandBody);

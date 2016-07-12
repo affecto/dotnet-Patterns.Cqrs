@@ -39,7 +39,7 @@ namespace Affecto.Patterns.Cqrs.Tests
         {
             try
             {
-                sut.SendAsync(null).Wait();
+                sut.SendAsync<TestCommand>(null).Wait();
                 Assert.Fail();
             }
             catch (AggregateException e)

@@ -9,6 +9,7 @@
         /// Sends command to the bus for execution.
         /// </summary>
         /// <param name="command">Command wrapped in an envelope.</param>
-        void Send(Envelope<ICommand> command);
+        /// <typeparam name="TCommand">Command type.</typeparam>
+        void Send<TCommand>(Envelope<TCommand> command) where TCommand : class;
     }
 }
